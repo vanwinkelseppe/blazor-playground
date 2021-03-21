@@ -1,0 +1,70 @@
+﻿@page "/form"
+
+@using System.Diagnostics
+@using Blazor.Playground.Data
+
+<h3>Contact Edit</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model="@contact" OnValidSubmit="@ValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="name" class="control-label">Name: </label>
+                <InputText id="name" @bind-value="contact.Name" class="form-control" />
+                <ValidationMessage For="@(() => contact.Name)" />
+            </div>
+            <div class="form-group">
+                <label for="address" class="control-label">Address: </label>
+                <InputText id="address" @bind-value="contact.Address" class="form-control" />
+                <ValidationMessage For="@(() => contact.Address)" />
+            </div>
+            <div class="form-group">
+                <label for="city" class="control-label">City: </label>
+                <InputText id="city" @bind-value="contact.City" class="form-control" />
+                <ValidationMessage For="@(() => contact.City)" />
+            </div>
+            <div class="form-group">
+                <label for="state" class="control-label">State: </label>
+                <InputText id="state" @bind-value="contact.State" class="form-control" />
+                <ValidationMessage For="@(() => contact.State)" />
+            </div>
+            <div class="form-group">
+                <label for="postalCode" class="control-label">Postal Code: </label>
+                <InputText id="postalCode" @bind-value="contact.PostalCode" class="form-control" />
+                <ValidationMessage For="@(() => contact.PostalCode)" />
+            </div>
+            <div class="form-group">
+                <label for="phone" class="control-label">Phone: </label>
+                <InputText id="phone" @bind-value="contact.Phone" class="form-control" />
+                <ValidationMessage For="@(() => contact.Phone)" />
+            </div>
+            <div class="form-group">
+                <label for="email" class="control-label">Email: </label>
+                <InputText id="email" @bind-value="contact.Email" class="form-control" />
+                <ValidationMessage For="@(() => contact.Email)" />
+            </div>
+            <button type="submit">Submit</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private Contact contact = new Contact
+    {
+        Id = 1,
+        Name = "Eric",
+        Address = "578 Main St.",
+        City = "Nashville",
+        State = "TN",
+        Phone = "615-555-5555",
+        Email = "ericeric.com"
+    };
+
+    private void ValidSubmit()
+    {
+        Debug.WriteLine("ValidSubmit");
+    }
+}
